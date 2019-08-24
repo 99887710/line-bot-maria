@@ -1,0 +1,29 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS Serverless Spring API - org.jw.bot::line-bot-maria
+Globals:
+  Api:
+    EndpointConfiguration: REGIONAL
+Outputs:
+  LineBotMariaApi:
+    Description: URL for application
+    Export:
+      Name: LineBotMariaApi
+    Value:
+      Fn::Sub: https://${ServerlessRestApi}.execute-api.${AWS::Region}.amazonaws.com/Prod/ping
+Resources:
+  LineBotMariaFunction:
+    Properties:
+      CodeUri: s3://rms-developer-bucket-002/a8e933ad2bfa45342ff23aacbcffb667
+      Events:
+        GetResource:
+          Properties:
+            Method: any
+            Path: /{proxy+}
+          Type: Api
+      Handler: org.jw.bot.StreamLambdaHandler::handleRequest
+      MemorySize: 512
+      Policies: AWSLambdaBasicExecutionRole
+      Runtime: java8
+      Timeout: 15
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
