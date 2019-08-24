@@ -13,7 +13,7 @@ Outputs:
 Resources:
   LineBotMariaFunction:
     Properties:
-      CodeUri: s3://rms-developer-bucket-002/a8e933ad2bfa45342ff23aacbcffb667
+      CodeUri: s3://rms-developer-bucket-002/6723b9832d1a2d4ab8cbbc1cdfa97971
       Events:
         GetResource:
           Properties:
